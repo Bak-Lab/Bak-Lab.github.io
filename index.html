@@ -4,27 +4,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Bak-Lab builds open tools for running HolyC programs on Linux.">
-  <meta name="theme-color" content="#080b10">
-  <title>Bak-Lab — HolyC on Linux</title>
+  <meta name="theme-color" content="#0000aa">
+  <title>Bak-Lab | HolyC on Linux</title>
   <style>
     :root {
       color-scheme: dark;
-      --black: #080b10;
-      --panel: #0d1219;
-      --panel-raised: #111923;
-      --line: #253041;
-      --line-bright: #3c4b61;
-      --white: #e8edf2;
-      --muted: #8d9bad;
-      --cyan: #54e1f0;
-      --blue: #5d83ff;
-      --green: #78e08f;
-      --yellow: #ffd166;
-      --red: #ff6b6b;
-      --purple: #c792ea;
-      --orange: #f5a65b;
-      --shadow: rgba(0, 0, 0, 0.45);
-      --mono: "SFMono-Regular", "Cascadia Code", "Liberation Mono", Menlo, monospace;
+      --black: #000000;
+      --blue: #0000aa;
+      --green: #00aa00;
+      --cyan: #00aaaa;
+      --red: #aa0000;
+      --magenta: #aa00aa;
+      --brown: #aa5500;
+      --light-gray: #aaaaaa;
+      --dark-gray: #555555;
+      --light-blue: #5555ff;
+      --light-green: #55ff55;
+      --light-cyan: #55ffff;
+      --light-red: #ff5555;
+      --light-magenta: #ff55ff;
+      --yellow: #ffff55;
+      --white: #ffffff;
+      --font: "Cascadia Mono", "Liberation Mono", "DejaVu Sans Mono", monospace;
     }
 
     * {
@@ -38,144 +39,135 @@
     body {
       min-width: 300px;
       margin: 0;
-      color: var(--white);
-      background:
-        radial-gradient(circle at 18% 0%, rgba(84, 225, 240, 0.08), transparent 28rem),
-        radial-gradient(circle at 90% 32%, rgba(199, 146, 234, 0.07), transparent 26rem),
-        var(--black);
-      font-family: var(--mono);
-      line-height: 1.6;
-    }
-
-    body::before {
-      position: fixed;
-      z-index: 10;
-      inset: 0;
-      pointer-events: none;
-      content: "";
-      opacity: 0.16;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent 3px,
-        rgba(255, 255, 255, 0.025) 4px
-      );
+      color: var(--light-gray);
+      background-color: #080808;
+      font-family: var(--font);
+      font-size: 16px;
+      font-variant-ligatures: none;
+      line-height: 1.5;
     }
 
     a {
       color: inherit;
     }
 
-    button,
-    input {
-      font: inherit;
+    a:focus-visible {
+      outline: 2px solid var(--yellow);
+      outline-offset: 3px;
     }
 
     .skip-link {
       position: fixed;
       z-index: 20;
-      top: 0.75rem;
-      left: 0.75rem;
-      padding: 0.6rem 0.9rem;
+      top: 8px;
+      left: 8px;
+      padding: 8px 12px;
       color: var(--black);
-      background: var(--cyan);
-      transform: translateY(-180%);
+      background: var(--yellow);
+      transform: translateY(-160%);
     }
 
     .skip-link:focus {
       transform: translateY(0);
     }
 
-    .shell {
-      width: min(1160px, calc(100% - 2rem));
+    .page {
+      width: min(960px, calc(100% - 32px));
       margin: 0 auto;
     }
 
-    .site-header {
-      position: sticky;
-      z-index: 5;
-      top: 0;
-      border-bottom: 1px solid rgba(60, 75, 97, 0.65);
-      background: rgba(8, 11, 16, 0.86);
-      backdrop-filter: blur(14px);
+    .topbar {
+      border-bottom: 4px solid var(--light-blue);
+      color: var(--white);
+      background: var(--blue);
     }
 
     .nav {
-      min-height: 68px;
+      min-height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1.5rem;
+      gap: 24px;
     }
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
+    .logo {
+      color: var(--yellow);
       text-decoration: none;
       font-weight: 700;
-      letter-spacing: 0.02em;
     }
 
-    .brand-mark {
-      display: grid;
-      width: 34px;
-      height: 34px;
-      color: var(--black);
-      background: var(--cyan);
-      box-shadow: 5px 5px 0 rgba(84, 225, 240, 0.16);
-      place-items: center;
-    }
-
-    .brand-mark::before {
-      content: ">_";
-      font-size: 0.78rem;
-      font-weight: 900;
+    .logo::before {
+      margin-right: 8px;
+      color: var(--white);
+      content: "[>_]";
     }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.4rem;
       margin: 0;
       padding: 0;
+      display: flex;
+      gap: 24px;
       list-style: none;
+      font-size: 14px;
     }
 
     .nav-links a {
-      color: var(--muted);
       text-decoration: none;
-      font-size: 0.82rem;
-      transition: color 150ms ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--cyan);
+    .nav-links a:hover {
+      color: var(--yellow);
+    }
+
+    main {
+      padding: 40px 0 72px;
+    }
+
+    .window {
+      margin-bottom: 48px;
+      border: 2px solid var(--white);
+      background: var(--black);
+      box-shadow: 8px 8px 0 var(--dark-gray);
+    }
+
+    .titlebar {
+      min-height: 32px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--white);
+      background: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .window-buttons {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-button {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--white);
+      background: var(--light-gray);
     }
 
     .hero {
-      min-height: calc(100vh - 69px);
-      padding: clamp(5rem, 10vw, 9rem) 0 5rem;
+      min-height: 450px;
+      padding: 48px;
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      grid-template-columns: 1fr 300px;
       align-items: center;
-      gap: clamp(3rem, 7vw, 7rem);
+      gap: 56px;
     }
 
-    .eyebrow,
-    .section-label {
-      color: var(--cyan);
-      font-size: 0.76rem;
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--light-cyan);
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.17em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before,
-    .section-label::before {
-      content: "// ";
-      color: var(--line-bright);
     }
 
     h1,
@@ -186,479 +178,346 @@
     }
 
     h1 {
-      max-width: 780px;
-      margin-bottom: 1.5rem;
-      font-size: clamp(3.25rem, 8vw, 7.7rem);
-      line-height: 0.92;
-      letter-spacing: -0.075em;
+      margin-bottom: 24px;
+      color: var(--white);
+      font-size: 56px;
+      line-height: 1;
     }
 
-    .accent {
-      color: var(--cyan);
-      text-shadow: 0 0 28px rgba(84, 225, 240, 0.22);
+    h1 span {
+      display: block;
+      margin-top: 8px;
+      color: var(--yellow);
+      font-size: 24px;
+      line-height: 1.2;
     }
 
     .hero-copy {
-      max-width: 650px;
-      margin-bottom: 2rem;
-      color: var(--muted);
-      font-family: system-ui, sans-serif;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 28px;
     }
 
-    .hero-actions {
+    .buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.85rem;
+      gap: 12px;
     }
 
     .button {
-      display: inline-flex;
-      min-height: 46px;
-      padding: 0.65rem 1rem;
-      border: 1px solid var(--line-bright);
-      align-items: center;
-      gap: 0.65rem;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 700;
-      transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      border-color: var(--cyan);
-      transform: translate(-2px, -2px);
-    }
-
-    .button-primary {
-      border-color: var(--cyan);
-      color: var(--black);
-      background: var(--cyan);
-      box-shadow: 5px 5px 0 rgba(84, 225, 240, 0.15);
-    }
-
-    .button-primary:hover,
-    .button-primary:focus-visible {
+      padding: 9px 14px;
+      border: 2px solid var(--white);
       color: var(--white);
-      background: transparent;
+      background: var(--blue);
+      box-shadow: 4px 4px 0 var(--dark-gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    .terminal {
-      overflow: hidden;
-      border: 1px solid var(--line-bright);
-      background: rgba(13, 18, 25, 0.93);
-      box-shadow: 16px 16px 0 var(--shadow);
-    }
-
-    .terminal-bar {
-      min-height: 42px;
-      padding: 0 0.85rem;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: var(--muted);
-      background: var(--panel-raised);
-      font-size: 0.72rem;
-    }
-
-    .terminal-dots {
-      display: flex;
-      gap: 0.4rem;
-    }
-
-    .terminal-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--line-bright);
-    }
-
-    .terminal-dot:nth-child(1) {
-      background: var(--red);
-    }
-
-    .terminal-dot:nth-child(2) {
+    .button:hover {
+      color: var(--black);
       background: var(--yellow);
     }
 
-    .terminal-dot:nth-child(3) {
-      background: var(--green);
+    .button:active {
+      box-shadow: none;
+      transform: translate(4px, 4px);
     }
 
-    .terminal-body {
-      min-height: 335px;
-      padding: 1.4rem;
-      color: #b8c4d2;
-      font-size: clamp(0.72rem, 1.7vw, 0.88rem);
+    .pixel-screen {
+      border: 4px solid var(--light-gray);
+      outline: 2px solid var(--white);
+      background: var(--blue);
+      box-shadow: 8px 8px 0 var(--dark-gray);
+      aspect-ratio: 4 / 3;
     }
 
-    .terminal-line {
-      margin-bottom: 0.65rem;
+    .pixel-screen svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      image-rendering: pixelated;
     }
 
-    .prompt {
-      color: var(--green);
+    .system-bar {
+      padding: 8px 12px;
+      border-top: 2px solid var(--white);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      color: var(--black);
+      background: var(--light-gray);
+      font-size: 12px;
+      font-weight: 700;
     }
 
-    .path {
+    .system-bar span:not(:last-child) {
+      border-right: 2px solid var(--dark-gray);
+    }
+
+    .system-bar span {
+      padding: 0 10px;
+    }
+
+    .system-bar strong {
       color: var(--blue);
     }
 
-    .terminal-key {
-      color: var(--purple);
-    }
-
-    .terminal-value {
-      color: var(--yellow);
-    }
-
-    .terminal-command {
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-    }
-
-    .terminal-command label {
-      flex: none;
-      color: var(--green);
-    }
-
-    .terminal-command input {
-      width: 100%;
-      padding: 0;
-      border: 0;
-      outline: 0;
-      color: var(--white);
-      background: transparent;
-      caret-color: var(--cyan);
-    }
-
-    .status-strip {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: rgba(13, 18, 25, 0.68);
-    }
-
-    .status-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .status-item {
-      padding: 1.25rem;
-      border-left: 1px solid var(--line);
-    }
-
-    .status-item:last-child {
-      border-right: 1px solid var(--line);
-    }
-
-    .status-name {
-      display: block;
-      margin-bottom: 0.2rem;
-      color: var(--muted);
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .status-value {
-      color: var(--green);
-      font-size: 0.9rem;
-    }
-
     section {
-      padding: clamp(5rem, 9vw, 8rem) 0;
+      margin-bottom: 64px;
+      scroll-margin-top: 24px;
     }
 
-    .section-heading {
-      max-width: 760px;
-      margin-bottom: 3rem;
+    .section-title {
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--cyan);
+      color: var(--white);
+      font-size: 24px;
     }
 
-    h2 {
-      margin-bottom: 1rem;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1;
-      letter-spacing: -0.055em;
+    .section-title::before {
+      margin-right: 10px;
+      color: var(--light-cyan);
+      content: "■";
     }
 
-    .section-intro {
-      max-width: 650px;
-      color: var(--muted);
-      font-family: system-ui, sans-serif;
-      line-height: 1.75;
-    }
-
-    .projects {
+    .project-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
-    .project-card {
-      position: relative;
-      min-height: 340px;
-      padding: clamp(1.5rem, 3vw, 2.3rem);
-      border: 1px solid var(--line);
+    .card {
+      min-height: 320px;
+      padding: 20px;
+      border: 2px solid var(--light-gray);
       display: flex;
       flex-direction: column;
-      background: linear-gradient(145deg, rgba(17, 25, 35, 0.95), rgba(11, 16, 23, 0.95));
-      transition: border-color 180ms ease, transform 180ms ease;
+      background: var(--black);
+      box-shadow: 6px 6px 0 var(--dark-gray);
     }
 
-    .project-card:hover {
-      border-color: var(--line-bright);
-      transform: translateY(-4px);
+    .card-index {
+      color: var(--light-cyan);
+      font-size: 12px;
     }
 
-    .project-card:first-child {
-      grid-column: span 7;
+    .card h3 {
+      margin: 22px 0 14px;
+      color: var(--yellow);
+      font-size: 20px;
+      line-height: 1.2;
     }
 
-    .project-card:nth-child(2) {
-      grid-column: span 5;
-    }
-
-    .project-card:nth-child(3) {
-      grid-column: 4 / span 6;
-    }
-
-    .project-number {
-      margin-bottom: auto;
-      color: var(--line-bright);
-      font-size: 0.75rem;
-    }
-
-    .project-status {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      color: var(--green);
-      font-size: 0.66rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .project-status::before {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      margin-right: 0.45rem;
-      border-radius: 50%;
-      background: currentColor;
-      content: "";
-      box-shadow: 0 0 10px currentColor;
-    }
-
-    .project-card h3 {
-      margin: 2.5rem 0 0.8rem;
-      font-size: clamp(1.45rem, 3vw, 2.2rem);
-      letter-spacing: -0.04em;
-    }
-
-    .project-card p {
-      max-width: 580px;
-      color: var(--muted);
-      font-family: system-ui, sans-serif;
+    .card p {
+      font-size: 14px;
     }
 
     .tags {
+      margin: auto 0 20px;
+      padding-top: 12px;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
-      margin: 1rem 0 1.5rem;
+      gap: 6px;
     }
 
     .tag {
-      padding: 0.22rem 0.48rem;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.67rem;
+      padding: 2px 6px;
+      color: var(--black);
+      background: var(--light-gray);
+      font-size: 11px;
+      font-weight: 700;
     }
 
-    .project-link {
-      width: fit-content;
-      color: var(--cyan);
+    .card-link {
+      color: var(--light-cyan);
+      font-size: 13px;
       text-decoration: none;
-      font-size: 0.8rem;
     }
 
-    .project-link:hover,
-    .project-link:focus-visible {
-      text-decoration: underline;
-      text-underline-offset: 0.3em;
+    .card-link:hover {
+      color: var(--yellow);
     }
 
-    .mission-layout {
+    .card-link::before {
+      content: "> ";
+    }
+
+    .private {
+      color: var(--dark-gray);
+    }
+
+    .flow {
       display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: clamp(3rem, 8vw, 8rem);
-      align-items: start;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--light-gray);
+      border: 2px solid var(--light-gray);
     }
 
-    .manifesto {
-      position: sticky;
-      top: 105px;
-    }
-
-    .manifesto strong {
-      color: var(--white);
-    }
-
-    .pipeline {
-      counter-reset: pipeline;
-    }
-
-    .pipeline-step {
-      position: relative;
-      min-height: 150px;
-      padding: 0 0 2.5rem 5rem;
-      border-left: 1px solid var(--line-bright);
-    }
-
-    .pipeline-step:last-child {
-      min-height: auto;
-      padding-bottom: 0;
-      border-left-color: transparent;
-    }
-
-    .pipeline-step::before {
-      position: absolute;
-      top: 0;
-      left: -1.35rem;
-      display: grid;
-      width: 2.7rem;
-      height: 2.7rem;
-      border: 1px solid var(--cyan);
-      color: var(--cyan);
+    .flow-step {
+      min-height: 180px;
+      padding: 18px;
+      color: var(--light-gray);
       background: var(--black);
-      content: "0" counter(pipeline);
-      counter-increment: pipeline;
-      font-size: 0.72rem;
+    }
+
+    .flow-number {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      margin-bottom: 20px;
+      color: var(--black);
+      background: var(--light-cyan);
+      font-size: 13px;
+      font-weight: 700;
       place-items: center;
     }
 
-    .pipeline-step h3 {
-      margin-bottom: 0.55rem;
-      color: var(--yellow);
-      font-size: 1rem;
-      font-weight: 600;
+    .flow-step h3 {
+      margin-bottom: 10px;
+      color: var(--white);
+      font-size: 15px;
     }
 
-    .pipeline-step p {
-      color: var(--muted);
-      font-family: system-ui, sans-serif;
-    }
-
-    .about-box {
-      padding: clamp(2rem, 6vw, 5rem);
-      border: 1px solid var(--line-bright);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      background:
-        linear-gradient(135deg, rgba(84, 225, 240, 0.06), transparent 50%),
-        var(--panel);
-      box-shadow: 12px 12px 0 var(--shadow);
-    }
-
-    .about-box h2 {
+    .flow-step p {
       margin-bottom: 0;
+      font-size: 13px;
     }
 
-    .about-copy p {
-      color: var(--muted);
-      font-family: system-ui, sans-serif;
-      line-height: 1.75;
+    .note {
+      padding: 24px;
+      border: 2px solid var(--yellow);
+      color: var(--white);
+      background: var(--blue);
+      box-shadow: 6px 6px 0 var(--brown);
     }
 
-    .about-copy p:last-of-type {
-      margin-bottom: 1.6rem;
+    .note h2 {
+      margin-bottom: 16px;
+      color: var(--yellow);
+      font-size: 24px;
+    }
+
+    .note p {
+      max-width: 760px;
+      margin-bottom: 20px;
+    }
+
+    .prompt {
+      padding: 12px 16px;
+      border: 2px solid var(--light-gray);
+      color: var(--white);
+      background: var(--black);
+      font-size: 14px;
+    }
+
+    .prompt .user {
+      color: var(--light-green);
+    }
+
+    .prompt .path {
+      color: var(--light-blue);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 9px;
+      height: 15px;
+      margin-left: 4px;
+      vertical-align: -2px;
+      background: var(--light-gray);
     }
 
     footer {
-      padding: 2rem 0;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.72rem;
+      padding: 20px 0;
+      border-top: 4px solid var(--light-blue);
+      color: var(--white);
+      background: var(--blue);
+      font-size: 13px;
     }
 
     .footer-row {
       display: flex;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 20px;
     }
 
     .footer-row a {
-      color: var(--cyan);
+      color: var(--yellow);
       text-decoration: none;
     }
 
-    :focus-visible {
-      outline: 2px solid var(--yellow);
-      outline-offset: 4px;
-    }
-
-    @media (max-width: 860px) {
-      .hero,
-      .mission-layout,
-      .about-box {
+    @media (max-width: 800px) {
+      .hero {
+        padding: 32px;
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        min-height: auto;
+      .pixel-screen {
+        width: min(100%, 360px);
       }
 
-      .hero-copy {
-        max-width: 720px;
+      .project-grid {
+        grid-template-columns: 1fr;
       }
 
-      .project-card:first-child,
-      .project-card:nth-child(2),
-      .project-card:nth-child(3) {
-        grid-column: 1 / -1;
+      .card {
+        min-height: 250px;
       }
 
-      .manifesto {
-        position: static;
+      .flow {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 640px) {
-      .shell {
-        width: min(100% - 1.25rem, 1160px);
+    @media (max-width: 540px) {
+      body {
+        font-size: 14px;
+      }
+
+      .page {
+        width: min(100% - 16px, 960px);
+      }
+
+      .nav {
+        min-height: 48px;
       }
 
       .nav-links li:not(:last-child) {
         display: none;
       }
 
-      .status-grid {
-        grid-template-columns: repeat(2, 1fr);
+      main {
+        padding-top: 24px;
       }
 
-      .status-item:nth-child(3) {
-        border-top: 1px solid var(--line);
+      .hero {
+        min-height: 0;
+        padding: 24px 18px;
+        gap: 36px;
       }
 
-      .status-item:nth-child(4) {
-        border-top: 1px solid var(--line);
-        border-right: 1px solid var(--line);
+      h1 {
+        font-size: 38px;
       }
 
-      .terminal-body {
-        min-height: 310px;
-        padding: 1rem;
+      h1 span {
+        font-size: 18px;
       }
 
-      .pipeline-step {
-        padding-left: 3.5rem;
+      .system-bar,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .system-bar span {
+        padding: 5px;
+        border-right: 0 !important;
+      }
+
+      .system-bar span:not(:last-child) {
+        border-bottom: 1px solid var(--dark-gray);
       }
 
       .footer-row {
@@ -670,260 +529,185 @@
       html {
         scroll-behavior: auto;
       }
-
-      *,
-      *::before,
-      *::after {
-        transition-duration: 0.01ms !important;
-      }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#content">Skip to content</a>
 
-  <header class="site-header">
-    <nav class="nav shell" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Bak-Lab home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>BAK-LAB</span>
-      </a>
+  <header class="topbar">
+    <nav class="nav page" aria-label="Main navigation">
+      <a class="logo" href="#top">BAK-LAB</a>
       <ul class="nav-links">
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#mission">Mission</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="https://github.com/Bak-Lab" target="_blank" rel="noreferrer">GitHub ↗</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#pipeline">HOW IT WORKS</a></li>
+        <li><a href="https://github.com/Bak-Lab" target="_blank" rel="noreferrer">GITHUB</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="main">
-    <div class="shell" id="top">
-      <section class="hero" aria-labelledby="hero-title">
+  <main class="page" id="content">
+    <div class="window" id="top">
+      <div class="titlebar">
+        <span>BAK-LAB.EXE</span>
+        <span class="window-buttons" aria-hidden="true">
+          <span class="window-button"></span>
+          <span class="window-button"></span>
+        </span>
+      </div>
+
+      <div class="hero">
         <div>
-          <p class="eyebrow">Open systems laboratory</p>
-          <h1 id="hero-title">HolyC,<br><span class="accent">outside</span><br>TempleOS.</h1>
+          <p class="kicker">OPEN SOURCE / LINUX / HOLYC</p>
+          <h1>BAK-LAB<span>HOLYC TOOLS FOR LINUX</span></h1>
           <p class="hero-copy">
-            Bak-Lab is building the tools needed to compile and run HolyC source
-            as native Linux software—one language feature, graphics primitive,
-            and real program at a time.
+            We are building a source-compatible path for running HolyC
+            programs as native Linux applications. No guest operating system
+            is required.
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="https://github.com/Bak-Lab/holyc-linux" target="_blank" rel="noreferrer">
-              View HolyC Linux <span aria-hidden="true">→</span>
-            </a>
-            <a class="button" href="#projects">Explore the lab</a>
+          <div class="buttons">
+            <a class="button" href="https://github.com/Bak-Lab/holyc-linux" target="_blank" rel="noreferrer">GET THE RUNTIME</a>
+            <a class="button" href="#projects">VIEW PROJECTS</a>
           </div>
         </div>
 
-        <div class="terminal" aria-label="Interactive Bak-Lab terminal">
-          <div class="terminal-bar">
-            <div class="terminal-dots" aria-hidden="true">
-              <span class="terminal-dot"></span>
-              <span class="terminal-dot"></span>
-              <span class="terminal-dot"></span>
-            </div>
-            <span>bak-lab :: tty0</span>
-          </div>
-          <div class="terminal-body" id="terminal-output" aria-live="polite">
-            <div class="terminal-line"><span class="prompt">bak@lab</span>:<span class="path">~</span>$ holyc --mission</div>
-            <div class="terminal-line">Make HolyC programs at home on Linux.</div>
-            <div class="terminal-line">&nbsp;</div>
-            <div class="terminal-line"><span class="terminal-key">frontend</span> <span class="terminal-value">C++17 → C</span></div>
-            <div class="terminal-line"><span class="terminal-key">runtime</span>&nbsp; <span class="terminal-value">C + SDL2</span></div>
-            <div class="terminal-line"><span class="terminal-key">display</span>&nbsp; <span class="terminal-value">640×480 / 16 colors</span></div>
-            <div class="terminal-line"><span class="terminal-key">status</span>&nbsp;&nbsp; <span class="terminal-value">early, open, running</span></div>
-            <form class="terminal-command" id="terminal-form">
-              <label for="terminal-input">bak@lab:~$</label>
-              <input id="terminal-input" name="command" autocomplete="off" spellcheck="false" aria-label="Terminal command" placeholder="type help">
-            </form>
-          </div>
+        <div class="pixel-screen" aria-label="Pixel art showing HolyC source becoming a Linux program">
+          <svg viewBox="0 0 160 120" role="img" aria-labelledby="pixel-title" shape-rendering="crispEdges">
+            <title id="pixel-title">HolyC source compiled for Linux</title>
+            <rect width="160" height="120" fill="#0000aa"/>
+            <rect x="12" y="14" width="54" height="72" fill="#aaaaaa"/>
+            <rect x="16" y="18" width="46" height="64" fill="#000000"/>
+            <rect x="21" y="25" width="26" height="4" fill="#55ffff"/>
+            <rect x="21" y="35" width="34" height="3" fill="#ffffff"/>
+            <rect x="26" y="43" width="25" height="3" fill="#55ff55"/>
+            <rect x="26" y="51" width="20" height="3" fill="#ffff55"/>
+            <rect x="21" y="59" width="32" height="3" fill="#ffffff"/>
+            <rect x="21" y="70" width="18" height="4" fill="#ff55ff"/>
+            <rect x="73" y="47" width="20" height="6" fill="#ffffff"/>
+            <rect x="86" y="40" width="7" height="20" fill="#ffffff"/>
+            <rect x="100" y="14" width="48" height="72" fill="#aaaaaa"/>
+            <rect x="104" y="18" width="40" height="64" fill="#000000"/>
+            <rect x="109" y="24" width="30" height="18" fill="#0000aa"/>
+            <rect x="109" y="49" width="30" height="4" fill="#55ffff"/>
+            <rect x="109" y="58" width="22" height="4" fill="#ffffff"/>
+            <rect x="109" y="67" width="27" height="4" fill="#55ff55"/>
+            <rect x="20" y="98" width="120" height="6" fill="#5555ff"/>
+            <rect x="31" y="95" width="20" height="12" fill="#ffff55"/>
+            <rect x="109" y="95" width="20" height="12" fill="#55ffff"/>
+          </svg>
         </div>
-      </section>
-    </div>
+      </div>
 
-    <div class="status-strip" aria-label="Project status">
-      <div class="status-grid shell">
-        <div class="status-item">
-          <span class="status-name">License</span>
-          <span class="status-value">Open source</span>
-        </div>
-        <div class="status-item">
-          <span class="status-name">Platform</span>
-          <span class="status-value">Linux</span>
-        </div>
-        <div class="status-item">
-          <span class="status-name">Language</span>
-          <span class="status-value">HolyC / C++ / C</span>
-        </div>
-        <div class="status-item">
-          <span class="status-name">Build state</span>
-          <span class="status-value">Experimental</span>
-        </div>
+      <div class="system-bar">
+        <span>STATUS: <strong>ALPHA</strong></span>
+        <span>HOST: <strong>LINUX</strong></span>
+        <span>DISPLAY: <strong>16 COLOR</strong></span>
+        <span>LICENSE: <strong>OPEN</strong></span>
       </div>
     </div>
 
     <section id="projects">
-      <div class="shell">
-        <div class="section-heading">
-          <p class="section-label">Featured work</p>
-          <h2>Projects with a pulse.</h2>
-          <p class="section-intro">
-            From compatibility tooling to a complete 16-color game, every
-            project exercises another part of the path from TempleOS ideas to
-            practical Linux software.
+      <h2 class="section-title">PROJECTS</h2>
+      <div class="project-grid">
+        <article class="card">
+          <span class="card-index">FILE 01 / ACTIVE</span>
+          <h3>HOLYC LINUX</h3>
+          <p>
+            A C++17 frontend and C/SDL2 runtime for compiling supported HolyC
+            source into native Linux programs.
           </p>
-        </div>
+          <div class="tags">
+            <span class="tag">HOLYC</span>
+            <span class="tag">C++</span>
+            <span class="tag">SDL2</span>
+          </div>
+          <a class="card-link" href="https://github.com/Bak-Lab/holyc-linux" target="_blank" rel="noreferrer">OPEN REPOSITORY</a>
+        </article>
 
-        <div class="projects">
-          <article class="project-card">
-            <span class="project-number">PROJECT_01</span>
-            <span class="project-status">Active</span>
-            <h3>HolyC Linux</h3>
-            <p>
-              A source-compatibility runtime that translates supported HolyC
-              into C and maps graphics, input, timing, and system calls onto
-              Linux and SDL2.
-            </p>
-            <div class="tags" aria-label="Technologies">
-              <span class="tag">HOLYC</span>
-              <span class="tag">C++17</span>
-              <span class="tag">SDL2</span>
-              <span class="tag">CLANG</span>
-            </div>
-            <a class="project-link" href="https://github.com/Bak-Lab/holyc-linux" target="_blank" rel="noreferrer">github.com/Bak-Lab/holyc-linux ↗</a>
-          </article>
+        <article class="card">
+          <span class="card-index">FILE 02 / PLAYABLE</span>
+          <h3>EXODUS ESCAPE</h3>
+          <p>
+            A short 16-color HolyC game with followers, soldiers, manna,
+            plague powers, and a parted-sea finale.
+          </p>
+          <div class="tags">
+            <span class="tag">GAME</span>
+            <span class="tag">HOLYC</span>
+            <span class="tag">16 COLOR</span>
+          </div>
+          <a class="card-link" href="https://github.com/Bak-Lab/exodus-escape" target="_blank" rel="noreferrer">OPEN REPOSITORY</a>
+        </article>
 
-          <article class="project-card">
-            <span class="project-number">PROJECT_02</span>
-            <span class="project-status">Playable</span>
-            <h3>Exodus Escape</h3>
-            <p>
-              A short HolyC corridor game with follower AI, soldiers, manna,
-              plague powers, biblical interludes, and a parted-sea finale.
-            </p>
-            <div class="tags" aria-label="Technologies">
-              <span class="tag">HOLYC</span>
-              <span class="tag">16 COLORS</span>
-              <span class="tag">LINUX</span>
-            </div>
-            <a class="project-link" href="https://github.com/Bak-Lab/exodus-escape" target="_blank" rel="noreferrer">github.com/Bak-Lab/exodus-escape ↗</a>
-          </article>
-
-          <article class="project-card">
-            <span class="project-number">PROJECT_03</span>
-            <span class="project-status">Private lab</span>
-            <h3>TempleOS QEMU Starter</h3>
-            <p>
-              Reproducible scripts and compatibility-focused defaults for
-              installing TempleOS under QEMU on a modern Linux desktop.
-            </p>
-            <div class="tags" aria-label="Technologies">
-              <span class="tag">QEMU</span>
-              <span class="tag">SHELL</span>
-              <span class="tag">ARCH</span>
-            </div>
-            <span class="project-link">Repository currently private</span>
-          </article>
-        </div>
+        <article class="card">
+          <span class="card-index">FILE 03 / PRIVATE</span>
+          <h3>TEMPLEOS QEMU STARTER</h3>
+          <p>
+            Scripts and conservative defaults for installing TempleOS under
+            QEMU on a modern Linux desktop.
+          </p>
+          <div class="tags">
+            <span class="tag">QEMU</span>
+            <span class="tag">SHELL</span>
+            <span class="tag">ARCH</span>
+          </div>
+          <span class="card-link private">REPOSITORY IS PRIVATE</span>
+        </article>
       </div>
     </section>
 
-    <section id="mission">
-      <div class="shell mission-layout">
-        <div class="manifesto">
-          <p class="section-label">How it works</p>
-          <h2>A bridge, not an emulator.</h2>
-          <p class="section-intro">
-            The goal is not to hide TempleOS inside a virtual machine. It is to
-            understand HolyC programs at the source level and give their useful
-            ideas a native Linux home. <strong>Compatibility grows through real
-            programs, not abstract checklists.</strong>
-          </p>
-        </div>
-
-        <div class="pipeline" aria-label="HolyC Linux compilation pipeline">
-          <article class="pipeline-step">
-            <h3>READ .HC SOURCE</h3>
-            <p>The C++ frontend recognizes a focused, expanding subset of HolyC and reports unsupported constructs clearly.</p>
-          </article>
-          <article class="pipeline-step">
-            <h3>TRANSLATE WITH INTENT</h3>
-            <p>Supported language constructs become portable C while source locations remain connected to the original file.</p>
-          </article>
-          <article class="pipeline-step">
-            <h3>MAP THE RUNTIME</h3>
-            <p>TempleOS-style drawing, input, text, timing, and utility APIs are implemented safely on Linux.</p>
-          </article>
-          <article class="pipeline-step">
-            <h3>RUN NATIVELY</h3>
-            <p>Clang produces an ordinary Linux executable backed by SDL2—no guest operating system required.</p>
-          </article>
-        </div>
+    <section id="pipeline">
+      <h2 class="section-title">HOW IT WORKS</h2>
+      <div class="flow">
+        <article class="flow-step">
+          <span class="flow-number">01</span>
+          <h3>READ .HC</h3>
+          <p>The frontend reads the supported HolyC language subset.</p>
+        </article>
+        <article class="flow-step">
+          <span class="flow-number">02</span>
+          <h3>TRANSLATE</h3>
+          <p>HolyC constructs are converted into portable C source.</p>
+        </article>
+        <article class="flow-step">
+          <span class="flow-number">03</span>
+          <h3>MAP APIS</h3>
+          <p>Graphics, text, input, and timing map onto Linux and SDL2.</p>
+        </article>
+        <article class="flow-step">
+          <span class="flow-number">04</span>
+          <h3>RUN</h3>
+          <p>Clang builds a normal native Linux executable.</p>
+        </article>
       </div>
     </section>
 
     <section id="about">
-      <div class="shell">
-        <div class="about-box">
-          <div>
-            <p class="section-label">About Bak-Lab</p>
-            <h2>Curiosity made executable.</h2>
-          </div>
-          <div class="about-copy">
-            <p>
-              Bak-Lab is an independent open-source workshop exploring unusual
-              systems, compact software, and the boundary between old ideas and
-              modern machines.
-            </p>
-            <p>
-              The current mission is simple to state and difficult to finish:
-              make it possible to run useful HolyC source files directly on
-              Linux, then prove the runtime by building real things with it.
-            </p>
-            <a class="button button-primary" href="https://github.com/Bak-Lab" target="_blank" rel="noreferrer">Follow the work on GitHub ↗</a>
-          </div>
-        </div>
+      <div class="note">
+        <h2>ABOUT BAK-LAB</h2>
+        <p>
+          Bak-Lab is an independent open-source project. Its current purpose
+          is to make useful HolyC source files run directly on Linux and to
+          test that work with complete programs.
+        </p>
+        <a class="button" href="https://github.com/Bak-Lab" target="_blank" rel="noreferrer">VISIT GITHUB</a>
       </div>
     </section>
+
+    <div class="prompt" aria-label="Command prompt">
+      <span class="user">bak@lab</span>:<span class="path">~/holyc-linux</span>$ ./build <span class="cursor" aria-hidden="true"></span>
+    </div>
   </main>
 
   <footer>
-    <div class="footer-row shell">
-      <span>© <span id="year">2026</span> Bak-Lab. Built in the open.</span>
-      <span><a href="https://github.com/Bak-Lab" target="_blank" rel="noreferrer">github.com/Bak-Lab</a> :: EOF</span>
+    <div class="footer-row page">
+      <span>BAK-LAB / <span id="year">2026</span></span>
+      <a href="https://github.com/Bak-Lab" target="_blank" rel="noreferrer">GITHUB.COM/BAK-LAB</a>
     </div>
   </footer>
 
   <script>
-    const form = document.getElementById("terminal-form");
-    const input = document.getElementById("terminal-input");
-    const output = document.getElementById("terminal-output");
-    const commands = {
-      help: "commands: help, mission, projects, source, clear",
-      mission: "Build a native path for useful HolyC programs on Linux.",
-      projects: "holyc-linux :: exodus-escape :: templeos-qemu-starter",
-      source: "https://github.com/Bak-Lab"
-    };
-
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const command = input.value.trim().toLowerCase();
-      if (!command) return;
-
-      if (command === "clear") {
-        [...output.querySelectorAll(".terminal-response")].forEach((line) => line.remove());
-      } else {
-        const line = document.createElement("div");
-        line.className = "terminal-line terminal-response";
-        line.textContent = commands[command] || `command not found: ${command}`;
-        output.insertBefore(line, form);
-      }
-
-      input.value = "";
-    });
   </script>
 </body>
 </html>
