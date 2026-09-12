@@ -283,7 +283,7 @@
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
 
@@ -625,7 +625,22 @@
         </article>
 
         <article class="card">
-          <span class="card-index">FILE 02 / PLAYABLE</span>
+          <span class="card-index">FILE 02 / ACTIVE</span>
+          <h3>HOLYC GAME ENGINE</h3>
+          <p>
+            Reusable HolyC actors, worlds, collision, wall sliding, follower
+            movement, and drawing helpers for compact 2D games.
+          </p>
+          <div class="tags">
+            <span class="tag">ENGINE</span>
+            <span class="tag">HOLYC</span>
+            <span class="tag">2D</span>
+          </div>
+          <a class="card-link" href="https://github.com/Bak-Lab/holyc-game-engine" target="_blank" rel="noreferrer">OPEN REPOSITORY</a>
+        </article>
+
+        <article class="card">
+          <span class="card-index">FILE 03 / PLAYABLE</span>
           <h3>EXODUS ESCAPE</h3>
           <p>
             A short 16-color HolyC game with followers, soldiers, manna,
@@ -640,7 +655,7 @@
         </article>
 
         <article class="card">
-          <span class="card-index">FILE 03 / PRIVATE</span>
+          <span class="card-index">FILE 04 / PRIVATE</span>
           <h3>TEMPLEOS QEMU STARTER</h3>
           <p>
             Scripts and conservative defaults for installing TempleOS under
@@ -661,23 +676,23 @@
       <div class="flow">
         <article class="flow-step">
           <span class="flow-number">01</span>
-          <h3>READ .HC</h3>
-          <p>The frontend reads the supported HolyC language subset.</p>
+          <h3>COMPILE</h3>
+          <p>The C++ frontend translates supported HolyC into portable C.</p>
         </article>
         <article class="flow-step">
           <span class="flow-number">02</span>
-          <h3>TRANSLATE</h3>
-          <p>HolyC constructs are converted into portable C source.</p>
+          <h3>MAP APIS</h3>
+          <p>The runtime maps graphics, text, input, and timing onto SDL2.</p>
         </article>
         <article class="flow-step">
           <span class="flow-number">03</span>
-          <h3>MAP APIS</h3>
-          <p>Graphics, text, input, and timing map onto Linux and SDL2.</p>
+          <h3>BUILD GAMES</h3>
+          <p>The game engine supplies actors, collision, and movement.</p>
         </article>
         <article class="flow-step">
           <span class="flow-number">04</span>
           <h3>RUN</h3>
-          <p>Clang builds a normal native Linux executable.</p>
+          <p>Clang produces a normal native Linux game or application.</p>
         </article>
       </div>
     </section>
